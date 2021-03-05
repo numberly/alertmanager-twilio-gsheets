@@ -28,7 +28,7 @@ Alertmanager
 
 ## Compile
 
-[GOPATH related doc](https://golang.org/doc/code.html#GOPATH).
+[GOPATH related doc](https://golang.org/doc/code.html#GOPATH)
 ```bash
 export GOPATH="your go path"
 make
