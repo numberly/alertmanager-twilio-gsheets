@@ -49,7 +49,7 @@ make
     1. Share it with your service account's email address noted earlier, with viewer access
     2. Note the Sheet's ID present in its URL (https://docs.google.com/spreadsheets/d/XXXXXXXXXXX/)
 
-2. Populated the needed environment variables:
+2. Populate the needed environment variables:
     ```bash
     cp .env.default .env
     chmod o-r .env
