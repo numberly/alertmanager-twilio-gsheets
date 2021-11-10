@@ -4,14 +4,6 @@ import (
 	"encoding/json"
 	"errors"
 	"fmt"
-	"github.com/getsentry/sentry-go"
-	"github.com/go-playground/validator/v10"
-	"github.com/gorilla/mux"
-	"github.com/patrickmn/go-cache"
-	"github.com/prometheus/alertmanager/template"
-	"golang.org/x/net/context"
-	"google.golang.org/api/option"
-	"google.golang.org/api/sheets/v4"
 	"io/ioutil"
 	"log"
 	"net/http"
@@ -20,6 +12,15 @@ import (
 	"regexp"
 	"strings"
 	"time"
+
+	"github.com/getsentry/sentry-go"
+	"github.com/go-playground/validator/v10"
+	"github.com/gorilla/mux"
+	"github.com/patrickmn/go-cache"
+	"github.com/prometheus/alertmanager/template"
+	"golang.org/x/net/context"
+	"google.golang.org/api/option"
+	"google.golang.org/api/sheets/v4"
 )
 
 const readRange = "A2:D"
@@ -207,8 +208,8 @@ func (serv *Server) getTeamNumbers(team string) ([]interface{}, error) {
 
 	for _, row := range resp.Values {
 		if len(row) > 0 {
-			serv.longCache.Set(team, row[1:], cache.DefaultExpiration)
-			serv.shortCache.Set(team, row[1:], cache.DefaultExpiration)
+			serv.longCache.Set(row[0].(string), row[1:], cache.DefaultExpiration)
+			serv.shortCache.Set(row[0].(string), row[1:], cache.DefaultExpiration)
 			if row[0] == team {
 				return row[1:], nil
 			}
